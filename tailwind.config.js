@@ -78,7 +78,7 @@ module.exports = {
         md: '10px',
         lg: '20px',
         full: '99999px',
-      },
+      },      
     },
   },
   plugins: [],
