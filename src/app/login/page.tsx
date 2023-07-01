@@ -33,7 +33,7 @@ export default function Login() {
               height="32"
               width="32"
               alt=""
-              src={githubIcon}
+              src={googleIcon}
               className="mr-5"
             />
             Entrar com Google
@@ -43,7 +43,7 @@ export default function Login() {
               height="32"
               width="32"
               alt=""
-              src={googleIcon}
+              src={githubIcon}
               className="mr-5"
             />
             Entrar com GitHub
