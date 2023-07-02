@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import './globals.css'
 import { Nunito } from 'next/font/google'
 
@@ -8,11 +9,7 @@ export const metadata = {
   description: 'BookWise is a book review app.',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={nunito.className}>{children}</body>

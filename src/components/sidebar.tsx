@@ -15,7 +15,7 @@ export function Sidebar() {
         fill
         className="rounded-xl"
       />
-      <Link href="/home">
+      <Link href="/">
         <Image
           src={logoSmall}
           alt=""
@@ -25,8 +25,9 @@ export function Sidebar() {
         />
       </Link>
       <section className="flex flex-col z-10 absolute top-[8.5rem] gap-4">
-        <Link href="/" className="flex gap-3 py-6 pl-4">
-          <LineChart className="text-gray-100 h-6 w-6" />
+        <Link href="/" className="flex gap-3 py-6 pl-4 relative ">
+          <span className="absolute -left-1  h-[1.5rem] top-1/2 translate-y-[-50%] w-1 rounded bg-gradient-to-t from-blue-50 to-green-50" />
+          <LineChart className="h-6 w-6" />
           Início
         </Link>
         <Link

@@ -6,6 +6,7 @@ import hero from '../../../public/hero_image.jpg'
 import githubIcon from '../../../public/github-icon.svg'
 import googleIcon from '../../../public/google-icon.svg'
 import guestIcon from '../../../public/guest-icon.svg'
+import Link from 'next/link'
 
 export default function Login() {
   return (
@@ -48,7 +49,10 @@ export default function Login() {
             />
             Entrar com GitHub
           </button>
-          <button className="flex justify-start items-center bg-gray-600 hover:bg-gray-500 px-6 py-5 rounded-[8px] text-gray-200 font-bold transition-all duration-300 ease-out hover:ease-in">
+          <Link
+            href="/home"
+            className="flex justify-start items-center bg-gray-600 hover:bg-gray-500 px-6 py-5 rounded-[8px] text-gray-200 font-bold transition-all duration-300 ease-out hover:ease-in"
+          >
             <Image
               height="32"
               width="32"
@@ -57,7 +61,7 @@ export default function Login() {
               className="mr-5"
             />
             Acessar como visitante
-          </button>
+          </Link>
         </div>
       </section>
     </main>
