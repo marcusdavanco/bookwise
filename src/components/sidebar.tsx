@@ -7,7 +7,7 @@ import { LineChart, LogIn, Search } from 'lucide-react'
 
 export function Sidebar() {
   return (
-    <aside className="w-[232px] relative pt-10 px-[3.25rem] pb-6 ">
+    <aside className="w-[232px] custom-fixed-height py-5 fixed top-[1.25rem] bottom-0 pt-10 px-[3.25rem] pb-6 ">
       <Image
         src={sidebarBackground}
         alt=""

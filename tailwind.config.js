@@ -15,7 +15,7 @@ module.exports = {
         4: '1rem',
         5: '1.25rem',
         6: '1.5rem',
-        7: '1.75rem',
+        7: '1.75rem', 
         8: '2rem',
         10: '2.5rem',
       },
@@ -89,5 +89,13 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.custom-fixed-height': {
+          height: 'calc(100vh - 2.5rem)',
+        },
+      });
+    },
+  ],
 }
