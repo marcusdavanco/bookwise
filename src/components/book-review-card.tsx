@@ -32,7 +32,7 @@ export function BookReviewCard() {
             <span className="text-sm text-gray-400">J. R. R. Tolkien</span>
           </div>
           <div className="flex ">
-            <span className="text-sm line-clamp-4">
+            <span className="text-sm line-clamp-4 text-ellipsis">
               Semper et sapien proin vitae nisi. Feugiat neque integer donec et
               aenean posuere amet ultrices. Cras fermentum id pulvinar varius leo
               a in. Amet libero pharetra nunc elementum fringilla velit ipsum. Sed

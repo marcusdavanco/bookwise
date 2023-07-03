@@ -1,6 +1,7 @@
-import { BookReviewCard } from '@/components/bookReviewCard'
+import { BookReviewCard } from '@/components/book-review-card'
+import { PopularBookCard } from '@/components/popular-book-card'
 import { Sidebar } from '@/components/sidebar'
-import { LineChart } from 'lucide-react'
+import { ChevronRight, LineChart } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -19,8 +20,15 @@ export default function Home() {
             <BookReviewCard />
           </div>
         </section>
-        <section>
-
+        <section className="w-[20rem]">
+          <div className='flex justify-between items-center h-[30px]'>
+            <span className="text-sm">Livros populares</span>
+            <button className="flex gap-2 text-sm text-purple-100 font-bold">Ver todos<ChevronRight className="text-purple-100 text-xs" /></button>
+          </div>
+          <PopularBookCard imageUrl='' />
+          <PopularBookCard />
+          <PopularBookCard />
+          <PopularBookCard />
         </section>
       </div>
     </main>
