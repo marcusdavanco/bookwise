@@ -5,7 +5,7 @@ import { Avatar } from './avatar'
 import user from '../../public/user.jpg'
 import book from '../../public/book.jpg'
 
-export function bookReviewCard() {
+export function BookReviewCard() {
   return (
     <article>
       <header>
