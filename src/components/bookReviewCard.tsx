@@ -17,11 +17,11 @@ export function BookReviewCard() {
           </div>
         </div>
         <div className="flex gap-1">
-          <Star className="h-4 w-4" />
-          <Star className="h-4 w-4" />
-          <Star className="h-4 w-4" />
-          <Star className="h-4 w-4" />
-          <Star className="h-4 w-4" />
+          <Star className="h-4 w-4 text-purple-100" fill='#8381D9' />
+          <Star className="h-4 w-4 text-purple-100" fill='#8381D9' />
+          <Star className="h-4 w-4 text-purple-100" fill='#8381D9' />
+          <Star className="h-4 w-4 text-purple-100" fill='#8381D9' />
+          <Star className="h-4 w-4 text-purple-100" />
         </div>
       </header>
       <section className="flex gap-5">
