@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="p-5 flex min-h-full">
       <Sidebar />
-      <div className="flex gap-16 place-content-center">
+      <div className="flex gap-16 m-auto">
         <section>
           <div className="flex gap-3 mb-10">
             <LineChart className="h-8 w-8 text-green-100" />
