@@ -20,12 +20,12 @@ export default function Home() {
             <BookReviewCard />
           </div>
         </section>
-        <section className="w-[20rem]">
+        <section className="flex flex-col w-[20rem] gap-3 mt-[4.5rem]">
           <div className='flex justify-between items-center h-[30px]'>
             <span className="text-sm">Livros populares</span>
             <button className="flex gap-2 text-sm text-purple-100 font-bold">Ver todos<ChevronRight className="text-purple-100 text-xs" /></button>
           </div>
-          <PopularBookCard imageUrl='' />
+          <PopularBookCard />
           <PopularBookCard />
           <PopularBookCard />
           <PopularBookCard />

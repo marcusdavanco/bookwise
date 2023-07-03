@@ -5,12 +5,12 @@ import book from '../../public/book.jpg'
 
 export function PopularBookCard() {
   return (
-    <article>
-      <Image src={book.src} height={94} width={64} alt="popular book name" />
-      <div>
-        <div>
-          <span>O Hobbit</span>
-          <span>J. R. R. Tolkien</span>
+    <article className="flex px-5 py-[1.125rem] bg-gray-700 rounded-[4px] gap-5">
+      <Image src={book.src} height={94} width={64} alt="popular book name" className="rounded-[4px]" />
+      <div className="flex flex-col justify-between">
+        <div className="flex flex-col">
+          <span className="leading-short font-bold">O Hobbit</span>
+          <span className="text-sm text-gray-400">J. R. R. Tolkien</span>
         </div>
         <div>
           <div className="flex gap-1">
