@@ -1,4 +1,5 @@
 import { BookReviewCard } from '@/components/book-review-card'
+import { LatestReadingCard } from '@/components/latest-reading-card'
 import { PopularBookCard } from '@/components/popular-book-card'
 import { Sidebar } from '@/components/sidebar'
 import { ChevronRight, LineChart } from 'lucide-react'
@@ -14,6 +15,18 @@ export default function Home() {
             <LineChart className="h-8 w-8 text-green-100" />
             <h2 className="text-2xl font-bold">Início</h2>
           </div>
+          {true && (
+            <div className="flex flex-col gap-4 mb-10">
+              <div className="flex justify-between gap-3 ">
+                <span className="mb-1 text-sm">Sua última leitura</span>
+                <button className="flex gap-2 text-sm text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold">
+                  Ver todos
+                  <ChevronRight className=" text-xs" />
+                </button>
+              </div>
+              <LatestReadingCard />
+            </div>
+          )}
           <div className="flex flex-col gap-3">
             <span className="mb-1 text-sm">Avaliações mais recentes</span>
             <BookReviewCard />
@@ -24,9 +37,9 @@ export default function Home() {
         <section className="flex flex-col w-[20rem] gap-3 mt-[4.5rem]">
           <div className="flex justify-between items-center h-[30px]">
             <span className="text-sm">Livros populares</span>
-            <button className="flex gap-2 text-sm text-purple-100 font-bold">
+            <button className="flex gap-2 text-sm text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold">
               Ver todos
-              <ChevronRight className="text-purple-100 text-xs" />
+              <ChevronRight className="text-xs" />
             </button>
           </div>
           <PopularBookCard />

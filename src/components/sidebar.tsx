@@ -50,7 +50,6 @@ export function Sidebar() {
         )}
         {true && (
           <div className="flex gap-3 items-center">
-
             <Link href="/profile" className="flex gap-3 items-center">
               <Avatar imageUrl={user.src} size={32} />
               <span className="text-sm text-gray-200">Cristofer</span>
@@ -58,7 +57,6 @@ export function Sidebar() {
             <Link href="/login">
               <LogOutIcon className="h-7 w-7" color="#f75a68" />
             </Link>
-
           </div>
         )}
       </section>
