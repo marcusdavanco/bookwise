@@ -17,15 +17,21 @@ export function BookReviewCard() {
           </div>
         </div>
         <div className="flex gap-1">
-          <Star className="h-4 w-4 text-purple-100" fill='#8381D9' />
-          <Star className="h-4 w-4 text-purple-100" fill='#8381D9' />
-          <Star className="h-4 w-4 text-purple-100" fill='#8381D9' />
-          <Star className="h-4 w-4 text-purple-100" fill='#8381D9' />
+          <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
+          <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
+          <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
+          <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
           <Star className="h-4 w-4 text-purple-100" />
         </div>
       </header>
       <section className="flex gap-5">
-        <Image src={book} height='152' width='108' alt='Livro' className="h-[152px] w-[108px] rounded-[4px]" />
+        <Image
+          src={book}
+          height="152"
+          width="108"
+          alt="Livro"
+          className="h-[152px] w-[108px] rounded-[4px]"
+        />
         <div className="flex flex-col gap-5">
           <div className="flex flex-col">
             <span className="text-base font-bold">O Hobbit</span>
@@ -34,9 +40,12 @@ export function BookReviewCard() {
           <div className="flex ">
             <span className="text-sm line-clamp-4 text-ellipsis">
               Semper et sapien proin vitae nisi. Feugiat neque integer donec et
-              aenean posuere amet ultrices. Cras fermentum id pulvinar varius leo
-              a in. Amet libero pharetra nunc elementum fringilla velit ipsum. Sed
-              vulputate massa velit nibh...<button className="text-purple-100 font-bold text-sm">ver mais</button>
+              aenean posuere amet ultrices. Cras fermentum id pulvinar varius
+              leo a in. Amet libero pharetra nunc elementum fringilla velit
+              ipsum. Sed vulputate massa velit nibh...
+              <button className="text-purple-100 font-bold text-sm">
+                ver mais
+              </button>
             </span>
           </div>
         </div>

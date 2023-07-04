@@ -2,15 +2,16 @@ import Image from 'next/image'
 
 interface AvatarProps {
   imageUrl: string
+  size: number
 }
 
-export function Avatar({ imageUrl }: AvatarProps) {
+export function Avatar({ imageUrl, size = 40 }: AvatarProps) {
   return (
-    <div className="rounded-full bg-gradient-to-t from-blue-50 to-green-50 h-10 w-10">
+    <div className={`rounded-full bg-gradient-to-t from-blue-50 to-green-50 h-[${size}px] w-[${size}px]`}>
       <Image
         src={imageUrl}
-        height="39"
-        width="39"
+        height={size - 1}
+        width={size - 1}
         alt="user name"
         className="rounded-full"
       />

@@ -3,7 +3,10 @@ import Image from 'next/image'
 import sidebarBackground from '../../public/sidebar_background.jpg'
 import logoSmall from '../../public/logo_small.svg'
 import Link from 'next/link'
-import { LineChart, LogIn, Search } from 'lucide-react'
+import { LineChart, LogIn, LogOutIcon, Search } from 'lucide-react'
+import { Avatar } from './avatar'
+
+import user from '../../public/user.jpg'
 
 export function Sidebar() {
   return (
@@ -39,10 +42,25 @@ export function Sidebar() {
         </Link>
       </section>
       <section className="flex z-10 absolute bottom-6 ">
-        <Link href="/" className="flex gap-3 font-bold text-gray-200">
-          Fazer login
-          <LogIn className="text-green-100 h-5 w-5" />
-        </Link>
+        {false && (
+          <Link href="/" className="flex gap-3 font-bold text-gray-200">
+            Fazer login
+            <LogIn className="text-green-100 h-5 w-5" />
+          </Link>
+        )}
+        {true && (
+          <div className="flex gap-3 items-center">
+
+            <Link href="/profile" className="flex gap-3 items-center">
+              <Avatar imageUrl={user.src} size={32} />
+              <span className="text-sm text-gray-200">Cristofer</span>
+            </Link>
+            <Link href="/login">
+              <LogOutIcon className="h-7 w-7" color="#f75a68" />
+            </Link>
+
+          </div>
+        )}
       </section>
     </aside>
   )

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="p-5 flex min-h-full">
       <Sidebar />
-      <div className="w-[232px]" />
+      <div className="min-w-[232px]" />
       <div className="flex gap-16 m-auto">
         <section>
           <div className="flex gap-3 mb-10">
@@ -22,9 +22,12 @@ export default function Home() {
           </div>
         </section>
         <section className="flex flex-col w-[20rem] gap-3 mt-[4.5rem]">
-          <div className='flex justify-between items-center h-[30px]'>
+          <div className="flex justify-between items-center h-[30px]">
             <span className="text-sm">Livros populares</span>
-            <button className="flex gap-2 text-sm text-purple-100 font-bold">Ver todos<ChevronRight className="text-purple-100 text-xs" /></button>
+            <button className="flex gap-2 text-sm text-purple-100 font-bold">
+              Ver todos
+              <ChevronRight className="text-purple-100 text-xs" />
+            </button>
           </div>
           <PopularBookCard />
           <PopularBookCard />
