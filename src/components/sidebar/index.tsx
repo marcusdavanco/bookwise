@@ -1,14 +1,17 @@
 import Image from 'next/image'
 
-import sidebarBackground from '../../public/sidebar_background.jpg'
-import logoSmall from '../../public/logo_small.svg'
+import sidebarBackground from '../../../public/sidebar_background.jpg'
+import logoSmall from '../../../public/logo_small.svg'
 import Link from 'next/link'
 import { LineChart, LogIn, LogOutIcon, Search } from 'lucide-react'
-import { Avatar } from './avatar'
+import { getServerSession } from 'next-auth'
+import { authOption } from '../../app/api/auth/[...nextauth]/route'
+import { SignOutButton } from './components/signout-button'
+import { UserName } from './components/username'
 
-import user from '../../public/user.jpg'
+export async function Sidebar() {
+  const session = await getServerSession(authOption)
 
-export function Sidebar() {
   return (
     <aside className="w-[232px] custom-fixed-height py-5 fixed top-[1.25rem] bottom-0 pt-10 px-[3.25rem] pb-6 ">
       <Image
@@ -42,21 +45,15 @@ export function Sidebar() {
         </Link>
       </section>
       <section className="flex z-10 absolute bottom-6 ">
-        {false && (
+        {!session ? (
           <Link href="/" className="flex gap-3 font-bold text-gray-200">
             Fazer login
             <LogIn className="text-green-100 h-5 w-5" />
           </Link>
-        )}
-        {true && (
+        ) : (
           <div className="flex gap-3 items-center">
-            <Link href="/profile" className="flex gap-3 items-center">
-              <Avatar imageUrl={user.src} size={32} />
-              <span className="text-sm text-gray-200">Cristofer</span>
-            </Link>
-            <Link href="/login">
-              <LogOutIcon className="h-7 w-7" color="#f75a68" />
-            </Link>
+            <UserName />
+            <SignOutButton />
           </div>
         )}
       </section>

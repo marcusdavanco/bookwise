@@ -7,8 +7,18 @@ import githubIcon from '../../../public/github-icon.svg'
 import googleIcon from '../../../public/google-icon.svg'
 import guestIcon from '../../../public/guest-icon.svg'
 import Link from 'next/link'
+import { SignInButton } from '@/components/signin-button'
+import { getServerSession } from 'next-auth'
+import { authOption } from '../api/auth/[...nextauth]/route'
+import { redirect } from 'next/navigation'
 
-export default function Login() {
+export default async function Login() {
+  const session = await getServerSession(authOption)
+
+  if (session) {
+    redirect('/home')
+  }
+
   return (
     <main className="p-5 flex min-h-full">
       <section className="hidden md:block w-[598px] relative ">
@@ -29,26 +39,8 @@ export default function Login() {
           </p>
         </header>
         <div className="flex flex-col gap-4">
-          <button className="flex justify-start items-center bg-gray-600 hover:bg-gray-500 px-6 py-5 rounded-[8px] text-gray-200 font-bold transition-all duration-300 ease-out hover:ease-in">
-            <Image
-              height="32"
-              width="32"
-              alt=""
-              src={googleIcon}
-              className="mr-5"
-            />
-            Entrar com Google
-          </button>
-          <button className="flex justify-start items-center bg-gray-600 hover:bg-gray-500 px-6 py-5 rounded-[8px] text-gray-200 font-bold transition-all duration-300 ease-out hover:ease-in">
-            <Image
-              height="32"
-              width="32"
-              alt=""
-              src={githubIcon}
-              className="mr-5"
-            />
-            Entrar com GitHub
-          </button>
+          <SignInButton imageUrl={googleIcon.src} providerName='google' />
+          <SignInButton imageUrl={githubIcon.src} providerName='github' />
           <Link
             href="/home"
             className="flex justify-start items-center bg-gray-600 hover:bg-gray-500 px-6 py-5 rounded-[8px] text-gray-200 font-bold transition-all duration-300 ease-out hover:ease-in"

@@ -10,7 +10,9 @@ export function BookReviewCard() {
     <article className="bg-gray-700 rounded-[8px] p-6 w-[38rem] h-[17.5rem] flex flex-col gap-8">
       <header className="flex justify-between">
         <div className="flex gap-4">
-          <Avatar imageUrl={user.src} />
+          <div>
+            <Avatar imageUrl={user.src} />
+          </div>
           <div className="flex flex-col">
             <span className="text-md">Jaxson Dias</span>
             <span className="text-gray-400">Hoje</span>
