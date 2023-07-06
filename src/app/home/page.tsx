@@ -3,8 +3,14 @@ import { LatestReadingCard } from '@/components/latest-reading-card'
 import { PopularBookCard } from '@/components/popular-book-card'
 import { Sidebar } from '@/components/sidebar'
 import { ChevronRight, LineChart } from 'lucide-react'
+import { getServerSession } from 'next-auth'
+import { authOption } from '../api/auth/[...nextauth]/route'
 
-export default function Home() {
+
+export default async function Home() {
+
+  const session = await getServerSession(authOption)
+
   return (
     <main className="p-5 flex min-h-full">
       <Sidebar />
@@ -15,7 +21,7 @@ export default function Home() {
             <LineChart className="h-8 w-8 text-green-100" />
             <h2 className="text-2xl font-bold">Início</h2>
           </div>
-          {true && (
+          {session && (
             <div className="flex flex-col gap-4 mb-10">
               <div className="flex justify-between gap-3 ">
                 <span className="mb-1 text-sm">Sua última leitura</span>
