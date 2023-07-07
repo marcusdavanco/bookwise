@@ -1,7 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from "next"
-import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import GithubProvider from "next-auth/providers/github"
+// import type { NextApiRequest, NextApiResponse } from "next"
+import NextAuth from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import GithubProvider from 'next-auth/providers/github'
 
 export const authOption = {
   secret: process.env.NEXTAUTH_SECRET ?? '',
@@ -13,14 +13,13 @@ export const authOption = {
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID ?? '',
       clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
-    })
+    }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: '/login',
   },
-};
+}
 
-const handler = NextAuth(authOption);
+const handler = NextAuth(authOption)
 
-export { handler as GET, handler as POST}
-
+export { handler as GET, handler as POST }
