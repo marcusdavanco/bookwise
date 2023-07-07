@@ -1,7 +1,5 @@
 import { Star } from 'lucide-react'
 import Image from 'next/image'
-import { Avatar } from './avatar'
-
 import book from '../../public/book.jpg'
 
 export function LatestReadingCard() {
