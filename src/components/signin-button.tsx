@@ -13,7 +13,7 @@ export function SignInButton({ imageUrl, providerName }: SignInButtonProps) {
     <button
       onClick={async () =>
         await signIn(providerName, {
-          callbackUrl: 'http://localhost:3000/home',
+          callbackUrl: `${window.location.hostname}/home`,
         })
       }
       className="flex justify-start items-center bg-gray-600 hover:bg-gray-500 px-6 py-5 rounded-[8px] text-gray-200 font-bold transition-all duration-300 ease-out hover:ease-in"
