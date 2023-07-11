@@ -1,3 +1,4 @@
+import { PersonalReview } from '@/components/personal-review'
 import { SearchBar } from '@/components/searchbar'
 import { Sidebar } from '@/components/sidebar'
 import { User2 } from 'lucide-react'
@@ -17,6 +18,12 @@ export default function Profile() {
             <h2 className="text-2xl font-bold">Perfil</h2>
           </div>
           <SearchBar />
+          <div className="flex flex-col gap-6">
+            <PersonalReview />
+            <PersonalReview />
+            <PersonalReview />
+            <PersonalReview />
+          </div>
         </section>
         <section>
 
