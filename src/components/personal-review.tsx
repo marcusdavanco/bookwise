@@ -5,8 +5,8 @@ import book from '../../public/book.jpg'
 
 export function PersonalReview() {
   return (
-    <div>
-      <span className="text-gray-300 text-sm mb-2">
+    <div className="flex flex-col gap-2">
+      <span className="text-gray-300 text-sm">
         Há 2 dias
       </span>
       <article className="bg-gray-700 p-6 rounded-[8px] w-[39rem] flex flex-col gap-6">
