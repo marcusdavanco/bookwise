@@ -1,4 +1,5 @@
 import { PersonalReview } from '@/components/personal-review'
+import { ReadingSummary } from '@/components/reading-summary'
 import { SearchBar } from '@/components/searchbar'
 import { Sidebar } from '@/components/sidebar'
 import { User2 } from 'lucide-react'
@@ -11,7 +12,7 @@ export default function Profile() {
     <main className="p-5 flex min-h-full">
       <Sidebar />
       <div className="min-w-[232px]" />
-      <div className="flex gap-16 w-full">
+      <div className="flex gap-16 w-auto m-auto">
         <section>
           <div className="flex gap-3 mb-10 ">
             <User2 className="h-8 w-8 text-green-100" />
@@ -26,7 +27,7 @@ export default function Profile() {
           </div>
         </section>
         <section>
-
+          <ReadingSummary />
         </section>
       </div>
     </main>
