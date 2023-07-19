@@ -3,7 +3,7 @@ import { ReadingSummary } from '@/components/reading-summary'
 import { SearchBar } from '@/components/searchbar'
 import { Sidebar } from '@/components/sidebar'
 import { User2 } from 'lucide-react'
-import { redirect } from 'next/navigation'
+// import { redirect } from 'next/navigation'
 
 export default function Profile() {
   // redirect('/login')
