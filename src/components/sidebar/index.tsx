@@ -3,7 +3,7 @@ import Image from 'next/image'
 import sidebarBackground from '../../../public/sidebar_background.jpg'
 import logoSmall from '../../../public/logo_small.svg'
 import Link from 'next/link'
-import { LineChart, LogIn, Search } from 'lucide-react'
+import { LineChart, LogIn, Search, User, User2 } from 'lucide-react'
 import { getServerSession } from 'next-auth'
 import { authOption } from '../../app/api/auth/[...nextauth]/route'
 import { SignOutButton } from './components/signout-button'
@@ -42,6 +42,13 @@ export async function Sidebar() {
         >
           <Search className="h-6 w-6" />
           Explorar
+        </Link>
+        <Link
+          href="/profile"
+          className="flex gap-3 py-6 pl-4 text-gray-400 hover:text-gray-200 transition duration-300 ease-out hover:ease-in"
+        >
+          <User2 className="h-6 w-6" />
+          Perfil
         </Link>
       </section>
       <section className="flex z-10 absolute bottom-6 ">
