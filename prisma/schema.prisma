@@ -13,7 +13,9 @@ datasource db {
 // TODO: update these tables to match the prisma adapter from nextauth
 model User {
   id         String   @id @default(uuid())
+  username   String?  @unique
   name       String   @unique
+  email      String?
   avatar_url String?
   created_at DateTime @default(now())
 
