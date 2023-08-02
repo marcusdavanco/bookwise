@@ -1,8 +1,10 @@
+/* TODO: Confirm this is how it's done in this new version of NEXT
+ * Probably won't be necessary as I'm not creating an user before the provider
+ * authentication, meaning that once propely configured, the adapter should do */
+
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { setCookie } from 'nookies'
 import { prisma } from '@/lib/prisma'
-
-
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST'){

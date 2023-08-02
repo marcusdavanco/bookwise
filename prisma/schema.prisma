@@ -10,6 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// TODO: update these tables to match the prisma adapter from nextauth
 model User {
   id         String   @id @default(uuid())
   name       String   @unique
