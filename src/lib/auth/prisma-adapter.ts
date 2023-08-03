@@ -15,7 +15,7 @@ export function PrismaAdapter(): Adapter {
         id: user.id,
         name: user.name,
         username: user.username,
-        email: user.email,
+        email: user.email!,
         emailVerified: null,
         avatar_url: user.avatar_url,
       }
