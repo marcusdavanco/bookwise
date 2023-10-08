@@ -2,7 +2,7 @@
 <h1 align="center"> BookWise  </h1>
 
 <p align="center">
-	The BookWise project is a fullstack application and the final project of the Ignite React Course, were I'm using NextJS, ReactJs, NextAuth, Prisma and MySQL. Alongsise the course requirements, I'm doing an extra credit here, using Next 13 with the /app folder structure featuring server components, so lots of fun...
+	The BookWise project is a BFF(❤️) application and the final project of the Ignite React Course, where I'm using NextJS, ReactJs, NextAuth, Prisma, and MySQL. Alongside the course requirements, I'm doing an extra credit here, using Next 13 with the /app folder structure featuring server components, so lots of fun...
   
 </p>
 
@@ -43,6 +43,8 @@ This project is using the following technologies:
 - TailwindCSS 
 - Lucide Icons
 - Git e Github
+- Prisma
+- NextAuth
 
 ## 💻 Project
 
