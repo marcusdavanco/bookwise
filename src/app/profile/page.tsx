@@ -18,7 +18,7 @@ export default function Profile() {
             <User2 className="h-8 w-8 text-green-100" />
             <h2 className="text-2xl font-bold">Perfil</h2>
           </div>
-          <SearchBar />
+          <SearchBar placeholder="Buscar livro avaliado" />
           <div className="flex flex-col gap-6">
             <PersonalReview />
             <PersonalReview />
