@@ -1,10 +1,10 @@
 import { BookReviewCard } from '@/components/book-review-card'
 import { LatestReadingCard } from '@/components/latest-reading-card'
-import { PopularBookCard } from '@/components/popular-book-card'
 import { Sidebar } from '@/components/sidebar'
 import { ChevronRight, LineChart } from 'lucide-react'
 import { getServerSession } from 'next-auth'
 import { authOption } from '../api/auth/[...nextauth]/route'
+import { BookCard } from '@/components/book-card'
 
 export default async function Home() {
   const session = await getServerSession(authOption)
@@ -46,10 +46,12 @@ export default async function Home() {
               <ChevronRight className="text-xs" />
             </button>
           </div>
-          <PopularBookCard />
-          <PopularBookCard />
-          <PopularBookCard />
-          <PopularBookCard />
+          <div className="flex flex-col gap-3">
+            <BookCard size="sm" />
+            <BookCard size="sm" />
+            <BookCard size="sm" />
+            <BookCard size="sm" />
+          </div>
         </section>
       </div>
     </main>

@@ -8,15 +8,21 @@ interface BookCardProps {
   title?: string
   author?: string
   rating?: number
+  size?: 'sm' | 'md'
 }
 
-export function BookCard({ title, author, rating }: BookCardProps) {
+export function BookCard({
+  title,
+  author,
+  rating,
+  size = 'md',
+}: BookCardProps) {
   return (
-    <Card className="flex gap-5 min-h-[184px]">
+    <Card className="flex gap-5 flex-1">
       <Image
         src={book.src}
-        height={152}
-        width={108}
+        height={size === 'sm' ? 64 : 152}
+        width={size === 'sm' ? 64 : 108}
         alt="popular book name"
         className="rounded-[4px]"
       />
