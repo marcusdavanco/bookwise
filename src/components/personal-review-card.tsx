@@ -2,12 +2,13 @@ import { Star } from 'lucide-react'
 import Image from 'next/image'
 
 import book from '../../public/book.jpg'
+import { Card } from './card'
 
-export function PersonalReview() {
+export function PersonalReviewCard() {
   return (
     <div className="flex flex-col gap-2">
       <span className="text-gray-300 text-sm">Há 2 dias</span>
-      <article className="bg-gray-700 p-6 rounded-[8px] w-[39rem] flex flex-col gap-6">
+      <Card className="w-[39rem] flex flex-col gap-6">
         <div className="flex gap-6">
           <Image
             src={book}
@@ -42,7 +43,7 @@ export function PersonalReview() {
           elit rhoncus ut. Aliquet euismod vitae ut turpis. Aliquam amet integer
           pellentesque.
         </p>
-      </article>
+      </Card>
     </div>
   )
 }

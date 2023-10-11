@@ -2,10 +2,11 @@ import { Star } from 'lucide-react'
 import Image from 'next/image'
 
 import book from '../../public/book.jpg'
+import { Card } from './card'
 
 export function PopularBookCard() {
   return (
-    <article className="flex px-5 py-[1.125rem] bg-gray-700 rounded-[4px] gap-5">
+    <Card className="flex px-5 py-[1.125rem] bg-gray-700 rounded-[4px] gap-5">
       <Image
         src={book.src}
         height={94}
@@ -28,6 +29,6 @@ export function PopularBookCard() {
           </div>
         </div>
       </div>
-    </article>
+    </Card>
   )
 }

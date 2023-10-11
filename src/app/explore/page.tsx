@@ -1,4 +1,4 @@
-import { PersonalReview } from '@/components/personal-review'
+import { PersonalReviewCard } from '@/components/personal-review-card'
 import { SearchBar } from '@/components/searchbar'
 import { Sidebar } from '@/components/sidebar'
 import { TagButton } from '@/components/tagButton'
@@ -34,7 +34,7 @@ export default function Profile() {
 
           <div className="grid grid-cols-3 gap-5 my-2">
             {Array.from({ length: 15 }, (_, index) => index).map((index, i) => (
-              <PersonalReview key={index} />
+              <PersonalReviewCard key={index} />
             ))}
           </div>
         </section>

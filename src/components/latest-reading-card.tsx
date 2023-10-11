@@ -1,10 +1,11 @@
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import book from '../../public/book.jpg'
+import { Card } from './card'
 
 export function LatestReadingCard() {
   return (
-    <article className="bg-gray-600 rounded-[8px] p-6 w-[38rem] flex flex-col gap-8">
+    <Card className="bg-gray-600 rounded-[8px] p-6 w-[38rem] flex flex-col gap-8">
       <section className="flex gap-5">
         <Image
           src={book}
@@ -40,6 +41,6 @@ export function LatestReadingCard() {
           </div>
         </div>
       </section>
-    </article>
+    </Card>
   )
 }

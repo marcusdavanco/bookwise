@@ -1,4 +1,4 @@
-import { PersonalReview } from '@/components/personal-review'
+import { PersonalReviewCard } from '@/components/personal-review-card'
 import { ReadingSummary } from '@/components/reading-summary'
 import { SearchBar } from '@/components/searchbar'
 import { Sidebar } from '@/components/sidebar'
@@ -20,10 +20,10 @@ export default function Profile() {
           </div>
           <SearchBar placeholder="Buscar livro avaliado" />
           <div className="flex flex-col gap-6">
-            <PersonalReview />
-            <PersonalReview />
-            <PersonalReview />
-            <PersonalReview />
+            <PersonalReviewCard />
+            <PersonalReviewCard />
+            <PersonalReviewCard />
+            <PersonalReviewCard />
           </div>
         </section>
         <section>
