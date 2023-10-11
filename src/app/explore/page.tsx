@@ -1,3 +1,4 @@
+import { BookCard } from '@/components/book-card'
 import { PersonalReviewCard } from '@/components/personal-review-card'
 import { SearchBar } from '@/components/searchbar'
 import { Sidebar } from '@/components/sidebar'
@@ -34,7 +35,7 @@ export default function Profile() {
 
           <div className="grid grid-cols-3 gap-5 my-2">
             {Array.from({ length: 15 }, (_, index) => index).map((index, i) => (
-              <PersonalReviewCard key={index} />
+              <BookCard key={index} />
             ))}
           </div>
         </section>
