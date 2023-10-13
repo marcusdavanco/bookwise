@@ -5,6 +5,7 @@ import book from '../../public/book.jpg'
 import Image from 'next/image'
 import { CommentCard } from './comment-card'
 import { LoginDialog } from './login-dialog'
+import { CommentFormCard } from './comment-form-card'
 
 export function BookDetailDrawer() {
   return (
@@ -83,6 +84,7 @@ export function BookDetailDrawer() {
             </Dialog.Root>
           </div>
           <div className="flex flex-col gap-3">
+            <CommentFormCard />
             <CommentCard />
             <CommentCard />
             <CommentCard />
