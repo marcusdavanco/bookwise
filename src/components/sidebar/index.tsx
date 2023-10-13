@@ -37,7 +37,7 @@ export async function Sidebar() {
           Início
         </Link>
         <Link
-          href="/"
+          href="/explore"
           className="flex gap-3 py-6 pl-4 text-gray-400 hover:text-gray-200 transition duration-300 ease-out hover:ease-in"
         >
           <Search className="h-6 w-6" />

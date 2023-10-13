@@ -1,8 +1,7 @@
 import { BookCard } from '@/components/book-card'
-import { PersonalReviewCard } from '@/components/personal-review-card'
 import { SearchBar } from '@/components/searchbar'
 import { Sidebar } from '@/components/sidebar'
-import { TagButton } from '@/components/tagButton'
+import { TagButton } from '@/components/tag-button'
 import { Search } from 'lucide-react'
 // import { redirect } from 'next/navigation'
 

@@ -22,7 +22,7 @@ export function BookCard({
   size = 'md',
 }: BookCardProps) {
   return (
-    <Card className="flex">
+    <Card className="flex ">
       <Dialog.Root>
         <Dialog.Trigger asChild>
           <div className="flex gap-5 cursor-pointer">

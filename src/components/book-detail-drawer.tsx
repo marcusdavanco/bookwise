@@ -3,15 +3,16 @@ import { BookOpen, Bookmark, Star, X } from 'lucide-react'
 import { Card } from './card'
 import book from '../../public/book.jpg'
 import Image from 'next/image'
+import { CommentCard } from './comment-card'
 
 export function BookDetailDrawer() {
   return (
     <Dialog.Portal>
-      <Dialog.Overlay className="fixed inset-0 h-full w-full bg-black/75" />
+      <Dialog.Overlay className="fixed inset-0 w-full bg-black/75" />
 
-      <Dialog.Content className="fixed top-1/2 right-0 translate-y-[-50%] bg-gray-800 min-h-screen max-w-[660px] px-12 py-6">
-        <Dialog.Close className="relative top-full left-full mb-4">
-          <X size={24} />
+      <Dialog.Content className="fixed top-1/2 right-0 translate-y-[-50%] bg-gray-800 h-screen max-w-[660px] px-12 py-6 overflow-y-scroll">
+        <Dialog.Close className="relative top-0 left-full mb-4">
+          <X size={24} color={'#8D95AF'} />
         </Dialog.Close>
         <Card className="px-8 py-6 gap-10 flex flex-col">
           <div className="flex gap-8">
@@ -66,6 +67,23 @@ export function BookDetailDrawer() {
             </div>
           </div>
         </Card>
+        <section className="flex flex-col w-full gap-3 mt-10">
+          <div className="flex justify-between items-center h-[30px]">
+            <span className="text-sm leading-[160%] text-gray-200">
+              Avaliações
+            </span>
+            <button className="flex gap-2 text-md text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold">
+              Avaliar
+            </button>
+          </div>
+          <div className="flex flex-col gap-3">
+            <CommentCard />
+            <CommentCard />
+            <CommentCard />
+            <CommentCard />
+            <CommentCard />
+          </div>
+        </section>
       </Dialog.Content>
     </Dialog.Portal>
   )
