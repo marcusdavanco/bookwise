@@ -4,13 +4,14 @@ import { Card } from './card'
 import book from '../../public/book.jpg'
 import Image from 'next/image'
 import { CommentCard } from './comment-card'
+import { LoginDialog } from './login-dialog'
 
 export function BookDetailDrawer() {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 w-full bg-black/75" />
 
-      <Dialog.Content className="fixed top-1/2 right-0 translate-y-[-50%] bg-gray-800 h-screen max-w-[660px] px-12 py-6 overflow-y-scroll">
+      <Dialog.Content className="fixed top-1/2 right-0 translate-y-[-50%] bg-gray-800 h-screen max-w-[660px] px-12 py-6 overflow-y-auto">
         <Dialog.Close className="relative top-0 left-full mb-4">
           <X size={24} color={'#8D95AF'} />
         </Dialog.Close>
@@ -72,9 +73,14 @@ export function BookDetailDrawer() {
             <span className="text-sm leading-[160%] text-gray-200">
               Avaliações
             </span>
-            <button className="flex gap-2 text-md text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold">
-              Avaliar
-            </button>
+            <Dialog.Root>
+              <Dialog.Trigger asChild>
+                <button className="flex gap-2 text-md text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold">
+                  Avaliar
+                </button>
+              </Dialog.Trigger>
+              <LoginDialog />
+            </Dialog.Root>
           </div>
           <div className="flex flex-col gap-3">
             <CommentCard />
