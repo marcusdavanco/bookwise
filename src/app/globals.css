@@ -21,19 +21,19 @@ body {
 ::-webkit-scrollbar {
   margin-left: 1rem;
   width: 6px;
-  border-radius: 100%;
+  border-radius: 4;
 }
  
 ::-webkit-scrollbar-track {
   margin-left: 1rem;
   background-color: #181C2A;
-  border-radius: 100%;
+  border-radius: 4;
   width: 6px;
 }
  
 ::-webkit-scrollbar-thumb {
   margin-left: 1rem;
   background-color: #252D4A;
-  border-radius: 100%;
+  border-radius: 4;
   width: 6px;
 }
