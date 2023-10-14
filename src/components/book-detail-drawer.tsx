@@ -12,7 +12,7 @@ export function BookDetailDrawer() {
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 w-full bg-black/75" />
 
-      <Dialog.Content className="fixed top-1/2 right-0 translate-y-[-50%] bg-gray-800 h-screen max-w-[660px] px-12 py-6 overflow-y-auto">
+      <Dialog.Content className="fixed top-1/2 right-0 translate-y-[-50%] bg-gray-800 h-screen max-w-[660px] px-12 py-6 overflow-y-auto scrollbar-thumb-gray-600 scrollbar-track-gray-700 scrollbar-thin scrollbar-thumb-rounded-full">
         <Dialog.Close className="relative top-0 left-full mb-4">
           <X size={24} color={'#8D95AF'} />
         </Dialog.Close>

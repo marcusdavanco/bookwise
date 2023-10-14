@@ -88,6 +88,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
     function ({ addComponents }) {
       addComponents({
         '.custom-fixed-height': {

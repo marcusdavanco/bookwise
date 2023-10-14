@@ -13,7 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${nunito.className}`}>
+      <body
+        className={`${nunito.className}  scrollbar-thumb-gray-600 scrollbar-track-gray-700 scrollbar-thin scrollbar-thumb-rounded-full`}
+      >
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
