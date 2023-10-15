@@ -15,7 +15,7 @@ model User {
   id         String   @id @default(uuid())
   username   String?  @unique
   name       String   @unique
-  email      String?
+  email      String?  @unique
   avatar_url String?
   created_at DateTime @default(now())
 
@@ -87,7 +87,7 @@ model Account {
   token_type          String?
   scope               String?
   id_token            String?
-  session_date        String?
+  session_state       String?
   user                User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@unique([provider, provider_account_id])
