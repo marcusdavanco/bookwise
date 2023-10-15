@@ -33,9 +33,11 @@ export default async function Home() {
           )}
           <div className="flex flex-col gap-3">
             <span className="mb-1 text-sm">Avaliações mais recentes</span>
-            <BookReviewCard />
-            <BookReviewCard />
-            <BookReviewCard />
+            {Array.from({ length: 8 }, (_, index) => index + 1).map(
+              (i, index) => (
+                <BookReviewCard key={index} />
+              ),
+            )}
           </div>
         </section>
         <section className="flex flex-col w-[20rem] gap-3 mt-[4.5rem]">
@@ -47,10 +49,11 @@ export default async function Home() {
             </button>
           </div>
           <div className="flex flex-col gap-3">
-            <BookCard size="sm" />
-            <BookCard size="sm" />
-            <BookCard size="sm" />
-            <BookCard size="sm" />
+            {Array.from({ length: 8 }, (_, index) => index + 1).map(
+              (i, index) => (
+                <BookCard size="sm" key={index} />
+              ),
+            )}
           </div>
         </section>
       </div>
