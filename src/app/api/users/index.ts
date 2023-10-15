@@ -14,7 +14,7 @@ export default async function handler(
     return res.status(405).end()
   }
 
-  const { name, username } = req.body
+  const { name } = req.body
 
   const userExists = await prisma.user.findUnique({
     where: {

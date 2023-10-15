@@ -2,7 +2,7 @@
 
 import { api } from '@/lib/axios'
 import { AxiosError } from 'axios'
-import { signIn } from 'next-auth/react'
+// import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 
 interface SignInButtonProps {
