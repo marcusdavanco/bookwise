@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
-import { users } from "./constants/users";
-import { categories } from "./constants/categories";
-import { books } from "./constants/books";
-import { ratings } from "./constants/ratings";
+import { PrismaClient } from '@prisma/client'
+import { users } from './constants/users'
+import { categories } from './constants/categories'
+import { books } from './constants/books'
+import { ratings } from './constants/ratings'
 
 const prisma = new PrismaClient()
 
@@ -27,8 +27,8 @@ async function main() {
     return prisma.category.create({
       data: {
         name: category.name,
-        id: category.id
-      }
+        id: category.id,
+      },
     })
   })
 
@@ -47,30 +47,30 @@ async function main() {
               return {
                 category: {
                   connect: {
-                    id: category.id
-                  }
-                }
+                    id: category.id,
+                  },
+                },
               }
-            })
-          ]
-        }
-      }
+            }),
+          ],
+        },
+      },
     })
   })
 
   const ratingsSeed = ratings.map((rating) => {
     return prisma.rating.create({
       data: {
-        id: rating.id, 
+        id: rating.id,
         rate: rating.rate,
         description: rating.description,
         user: {
           connect: { id: rating.user_id },
         },
         book: {
-          connect: { id: rating.book_id}
-        }
-      }
+          connect: { id: rating.book_id },
+        },
+      },
     })
   })
 
