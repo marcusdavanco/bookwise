@@ -55,15 +55,19 @@ export function PrismaAdapter(): Adapter {
     async getUserByAccount({ providerAccountId, provider }) {
       const { user } = await prisma.account.findUniqueOrThrow({
         where: {
-          provider_provider_account_id: {
+          provider_providerAccountId: {
             provider,
-            provider_account_id: providerAccountId,
+            providerAccountId,
           },
         },
         include: {
           user: true,
         },
       })
+
+      if (!user) {
+        return null
+      }
 
       return {
         id: user.id,
@@ -98,10 +102,10 @@ export function PrismaAdapter(): Adapter {
     async linkAccount(account) {
       await prisma.account.create({
         data: {
-          user_id: account.userId,
+          userId: account.userId,
           type: account.type,
           provider: account.provider,
-          provider_account_id: account.providerAccountId,
+          providerAccountId: account.providerAccountId,
           refresh_token: account.refresh_token,
           access_token: account.access_token,
           expires_at: account.expires_at,
@@ -115,9 +119,9 @@ export function PrismaAdapter(): Adapter {
     async createSession({ sessionToken, userId, expires }) {
       await prisma.session.create({
         data: {
-          user_id: userId,
+          userId,
           expires,
-          session_token: sessionToken,
+          sessionToken,
         },
       })
 
@@ -128,7 +132,7 @@ export function PrismaAdapter(): Adapter {
     async getSessionAndUser(sessionToken) {
       const { user, ...session } = await prisma.session.findUniqueOrThrow({
         where: {
-          session_token: sessionToken,
+          sessionToken,
         },
         include: {
           user: true,
@@ -138,8 +142,8 @@ export function PrismaAdapter(): Adapter {
       return {
         session: {
           expires: session.expires,
-          sessionToken: session.session_token,
-          userId: session.user_id,
+          sessionToken: session.sessionToken,
+          userId: session.userId,
         },
         user: {
           id: user.id,
@@ -154,18 +158,18 @@ export function PrismaAdapter(): Adapter {
     async updateSession({ sessionToken, userId, expires }) {
       const prismaSession = await prisma.session.update({
         where: {
-          session_token: sessionToken,
+          sessionToken,
         },
         data: {
           expires,
-          user_id: userId,
+          userId,
         },
       })
 
       return {
         expires: prismaSession.expires,
-        sessionToken: prismaSession.session_token,
-        userId: prismaSession.user_id,
+        sessionToken: prismaSession.sessionToken,
+        userId: prismaSession.userId,
       }
     },
   }
