@@ -1,5 +1,6 @@
 'use client'
 
+import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 
 interface SignInButtonProps {
@@ -9,7 +10,7 @@ interface SignInButtonProps {
 
 export function SignInButton({ imageUrl, providerName }: SignInButtonProps) {
   async function handleRegister() {
-    // TODO
+    signIn(providerName)
   }
 
   return (

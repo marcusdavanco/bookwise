@@ -1,7 +1,9 @@
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL PRIMARY KEY,
+    "username" TEXT,
     "name" TEXT NOT NULL,
+    "email" TEXT,
     "avatar_url" TEXT,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -58,7 +60,7 @@ CREATE TABLE "accounts" (
     "token_type" TEXT,
     "scope" TEXT,
     "id_token" TEXT,
-    "session_date" TEXT,
+    "session_state" TEXT,
     CONSTRAINT "accounts_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -70,6 +72,15 @@ CREATE TABLE "sessions" (
     "expires" DATETIME NOT NULL,
     CONSTRAINT "sessions_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_username_key" ON "users"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_name_key" ON "users"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "categories_name_key" ON "categories"("name");
