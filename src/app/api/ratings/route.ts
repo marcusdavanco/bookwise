@@ -26,6 +26,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ rating }, { status: 201 })
   } catch (error) {
-    return NextResponse.json({ message: error }, { status: 400 })
+    return NextResponse.json({ message: 'invalid body type.' }, { status: 400 })
   }
 }
