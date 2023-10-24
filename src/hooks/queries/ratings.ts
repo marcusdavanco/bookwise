@@ -4,6 +4,8 @@ import {
   UseQueryOptions,
   useQuery,
 } from '@tanstack/react-query'
+import { Book } from './books'
+import { User } from './users'
 
 export type Rating = {
   id: string
@@ -12,6 +14,8 @@ export type Rating = {
   created_at: Date
   book_id: string
   user_id: string
+  book: Book
+  user: User
 }
 
 // QueryKey
@@ -47,7 +51,7 @@ async function getRatingByUserId({
 }
 
 // Hook
-export const useBooks = <Tdata = { ratings: Rating[] }>(
+export const useRatings = <Tdata = { ratings: Rating[] }>(
   options?: UseQueryOptions<
     { ratings: Rating[] },
     unknown,
@@ -62,7 +66,7 @@ export const useBooks = <Tdata = { ratings: Rating[] }>(
   })
 }
 
-export const useRatingsById = <Book>(
+export const useRatingsById = <Rating>(
   id: string,
   options?: UseQueryOptions<Rating, unknown, Book, RatingsByIdQueryKey>,
 ) => {
@@ -74,11 +78,11 @@ export const useRatingsById = <Book>(
   })
 }
 
-export const useRatingsByUserId = <Book>(
+export const useRatingsByUserId = <Rating>(
   id: string,
-  options?: UseQueryOptions<Rating, unknown, Book, RatingsByIdQueryKey>,
+  options?: UseQueryOptions<Rating, unknown, Rating, RatingsByIdQueryKey>,
 ) => {
-  return useQuery<Rating, unknown, Book, RatingsByIdQueryKey>({
+  return useQuery<Rating, unknown, Rating, RatingsByIdQueryKey>({
     queryKey: ['ratings', id],
     queryFn: getRatingByUserId,
     ...options,

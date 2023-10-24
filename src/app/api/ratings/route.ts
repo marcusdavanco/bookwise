@@ -4,7 +4,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
 export async function GET() {
-  const ratings = await prisma.rating.findMany()
+  const ratings = await prisma.rating.findMany({
+    include: {
+      user: true,
+      book: true,
+    },
+    orderBy: {
+      // eslint-disable-next-line camelcase
+      created_at: 'desc',
+    },
+  })
 
   return NextResponse.json({ ratings }, { status: 200 })
 }

@@ -1,21 +1,27 @@
+'use client'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { Avatar } from './avatar'
 
 import user from '../../public/user.jpg'
 import book from '../../public/book.jpg'
+import { useBooksById } from '@/hooks/queries/books'
+import { Rating } from '@/hooks/queries/ratings'
 
-export function BookReviewCard() {
+type BookReviewCardProps = Rating
+
+export function BookReviewCard(props: BookReviewCardProps) {
+  console.log(props.user.avatar_url)
   return (
     <article className="bg-gray-700 rounded-[8px] p-6 w-[38rem] h-[17.5rem] flex flex-col gap-8">
       <header className="flex justify-between">
         <div className="flex gap-4">
           <div>
-            <Avatar imageUrl={user.src} />
+            <Avatar imageUrl={props.user.avatar_url} />
           </div>
           <div className="flex flex-col">
-            <span className="text-md">Jaxson Dias</span>
-            <span className="text-gray-400">Hoje</span>
+            <span className="text-md">{props.user.name}</span>
+            <span className="text-gray-400">{props.created_at.toString()}</span>
           </div>
         </div>
         <div className="flex gap-1">
@@ -36,15 +42,12 @@ export function BookReviewCard() {
         />
         <div className="flex flex-col gap-5">
           <div className="flex flex-col">
-            <span className="text-base font-bold">O Hobbit</span>
-            <span className="text-sm text-gray-400">J. R. R. Tolkien</span>
+            <span className="text-base font-bold">{props.book.name}</span>
+            <span className="text-sm text-gray-400">{props.book.author}</span>
           </div>
           <div className="flex ">
             <span className="text-sm line-clamp-4 text-ellipsis">
-              Semper et sapien proin vitae nisi. Feugiat neque integer donec et
-              aenean posuere amet ultrices. Cras fermentum id pulvinar varius
-              leo a in. Amet libero pharetra nunc elementum fringilla velit
-              ipsum. Sed vulputate massa velit nibh...
+              {props.description}
               <button className="text-purple-100 font-bold text-sm">
                 ver mais
               </button>

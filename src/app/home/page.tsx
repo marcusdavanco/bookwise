@@ -1,10 +1,10 @@
-import { BookReviewCard } from '@/components/book-review-card'
 import { LatestReadingCard } from '@/components/latest-reading-card'
 import { Sidebar } from '@/components/sidebar'
 import { ChevronRight, LineChart } from 'lucide-react'
 import { getServerSession } from 'next-auth'
 import { authOption } from '../api/auth/[...nextauth]/route'
 import { BookCard } from '@/components/book-card'
+import { Ratings } from '@/components/ratings'
 
 export default async function Home() {
   const session = await getServerSession(authOption)
@@ -33,11 +33,7 @@ export default async function Home() {
           )}
           <div className="flex flex-col gap-3">
             <span className="mb-1 text-sm">Avaliações mais recentes</span>
-            {Array.from({ length: 8 }, (_, index) => index + 1).map(
-              (i, index) => (
-                <BookReviewCard key={index} />
-              ),
-            )}
+            <Ratings />
           </div>
         </section>
         <section className="flex flex-col w-[20rem] gap-3 mt-[4.5rem]">
