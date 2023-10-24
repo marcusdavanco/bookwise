@@ -17,6 +17,7 @@ export type Rating = {
 // QueryKey
 export type RatingsQueryKey = ['ratings']
 export type RatingsByIdQueryKey = ['ratings', string]
+export type RatingsByUserIdQueryKey = ['ratings', string]
 
 // queryFn
 async function fetchRatings() {
@@ -31,6 +32,16 @@ async function getRatingById({
   const [, id] = queryKey
 
   const { data: rating } = await api.get(`/ratings/${id}`)
+
+  return rating
+}
+
+async function getRatingByUserId({
+  queryKey,
+}: QueryFunctionContext<RatingsByUserIdQueryKey>) {
+  const [, id] = queryKey
+
+  const { data: rating } = await api.get(`/ratings/user/${id}`)
 
   return rating
 }
@@ -58,6 +69,18 @@ export const useRatingsById = <Book>(
   return useQuery<Rating, unknown, Book, RatingsByIdQueryKey>({
     queryKey: ['ratings', id],
     queryFn: getRatingById,
+    ...options,
+    enabled: !!id,
+  })
+}
+
+export const useRatingsByUserId = <Book>(
+  id: string,
+  options?: UseQueryOptions<Rating, unknown, Book, RatingsByIdQueryKey>,
+) => {
+  return useQuery<Rating, unknown, Book, RatingsByIdQueryKey>({
+    queryKey: ['ratings', id],
+    queryFn: getRatingByUserId,
     ...options,
     enabled: !!id,
   })
