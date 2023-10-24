@@ -1,7 +1,7 @@
 import { api } from '@/lib/axios'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 
-interface Category {
+export type Category = {
   id: string
   name: string
 }

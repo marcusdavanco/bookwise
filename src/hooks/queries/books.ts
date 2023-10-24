@@ -5,7 +5,7 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 
-interface Book {
+export type Book = {
   id: string
   name: string
   author: string
