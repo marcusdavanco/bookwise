@@ -2,6 +2,7 @@
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { Avatar } from './avatar'
+import { formatDistanceToNow } from 'date-fns'
 
 import user from '../../public/user.jpg'
 import book from '../../public/book.jpg'
@@ -21,7 +22,9 @@ export function BookReviewCard(props: BookReviewCardProps) {
           </div>
           <div className="flex flex-col">
             <span className="text-md">{props.user.name}</span>
-            <span className="text-gray-400">{props.created_at.toString()}</span>
+            <span className="text-gray-400">
+              {formatDistanceToNow(new Date(props.created_at))}
+            </span>
           </div>
         </div>
         <div className="flex gap-1">
@@ -34,7 +37,7 @@ export function BookReviewCard(props: BookReviewCardProps) {
       </header>
       <section className="flex gap-5">
         <Image
-          src={book}
+          src={props.book.cover_url.replace('public', '')}
           height="152"
           width="108"
           alt="Livro"
