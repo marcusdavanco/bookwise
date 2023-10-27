@@ -5,6 +5,7 @@ import { getServerSession } from 'next-auth'
 import { authOption } from '../api/auth/[...nextauth]/route'
 import { BookCard } from '@/components/book-card'
 import { Ratings } from '@/components/ratings'
+import { PopularBooks } from '@/components/PopularBooks'
 
 export default async function Home() {
   const session = await getServerSession(authOption)
@@ -44,13 +45,7 @@ export default async function Home() {
               <ChevronRight className="text-xs" />
             </button>
           </div>
-          <div className="flex flex-col gap-3">
-            {Array.from({ length: 8 }, (_, index) => index + 1).map(
-              (i, index) => (
-                <BookCard size="sm" key={index} />
-              ),
-            )}
-          </div>
+          <PopularBooks />
         </section>
       </div>
     </main>

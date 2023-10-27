@@ -4,6 +4,8 @@ import {
   UseQueryOptions,
   useQuery,
 } from '@tanstack/react-query'
+import { Rating } from './ratings'
+import { Category } from './categories'
 
 export type Book = {
   id: string
@@ -13,6 +15,8 @@ export type Book = {
   cover_url: string
   total_pages: number
   created_at: Date
+  categories: Category
+  ratings: Rating
 }
 
 // QueryKey
