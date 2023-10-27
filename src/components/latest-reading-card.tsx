@@ -1,14 +1,31 @@
-import { Star } from 'lucide-react'
+'use client'
 import Image from 'next/image'
-import book from '../../public/book.jpg'
 import { Card } from './card'
+import { useRatings } from '@/hooks/queries/ratings'
+import { Stars } from './stars'
+import { useSession } from 'next-auth/react'
+import { useMemo } from 'react'
 
 export function LatestReadingCard() {
+  const { data: sessionData } = useSession()
+  const { data: ratingsData } = useRatings()
+  const ratings = ratingsData?.ratings
+  const userId = sessionData?.user.id
+
+  const latestUserRating = useMemo(
+    () => ratings?.find((ratings) => ratings.user_id === userId),
+    [ratings, userId],
+  )
+
+  if (!latestUserRating) {
+    return
+  }
+
   return (
     <Card className="bg-gray-600 rounded-[8px] p-6 w-[38rem] flex flex-col gap-8">
       <section className="flex gap-5">
         <Image
-          src={book}
+          src={latestUserRating.book.cover_url.replace('public', '')}
           height="152"
           width="108"
           alt="Livro"
@@ -20,23 +37,18 @@ export function LatestReadingCard() {
               <div className="flex gap-4">
                 <span className="text-gray-300">Há 2 dias</span>
               </div>
-              <div className="flex gap-1">
-                <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-                <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-                <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-                <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-                <Star className="h-4 w-4 text-purple-100" />
-              </div>
+              <Stars rate={latestUserRating.rate} />
             </div>
-            <span className="text-base font-bold">O Hobbit</span>
-            <span className="text-sm text-gray-400">J. R. R. Tolkien</span>
+            <span className="text-base font-bold">
+              {latestUserRating.book.name}
+            </span>
+            <span className="text-sm text-gray-400">
+              {latestUserRating.book.author}
+            </span>
           </div>
           <div className="flex ">
             <span className="text-sm line-clamp-2 text-ellipsis text-gray-300">
-              Semper et sapien proin vitae nisi. Feugiat neque integer donec et
-              aenean posuere amet ultrices. Cras fermentum id pulvinar varius
-              leo a in. Amet libero pharetra nunc elementum fringilla velit
-              ipsum. Sed vulputate massa velit nibh...
+              {latestUserRating.description}
             </span>
           </div>
         </div>

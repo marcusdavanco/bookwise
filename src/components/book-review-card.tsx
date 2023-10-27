@@ -1,19 +1,14 @@
 'use client'
-import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { Avatar } from './avatar'
 import { formatDistanceToNow } from 'date-fns'
 
-import user from '../../public/user.jpg'
-import book from '../../public/book.jpg'
-import { useBooksById } from '@/hooks/queries/books'
 import { Rating } from '@/hooks/queries/ratings'
 import { Stars } from './stars'
 
 type BookReviewCardProps = Rating
 
 export function BookReviewCard(props: BookReviewCardProps) {
-  console.log(props.user.avatar_url)
   return (
     <article className="bg-gray-700 rounded-[8px] p-6 w-[38rem] h-[17.5rem] flex flex-col gap-8">
       <header className="flex justify-between">
