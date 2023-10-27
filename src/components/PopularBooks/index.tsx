@@ -21,10 +21,11 @@ export function PopularBooks() {
     return
   }
 
+  // TODO - the average is wrong
   const averageRatingsList = ratings
     .map((rating) => ratings[0].map((rating) => rating.rate))
     .map((rating) =>
-      Math.floor(rating.reduce((acc, rating) => (acc + rating) / 2, 0)),
+      Math.ceil(rating.reduce((acc, rating) => (acc + rating) / 2, 0)),
     )
 
   const completeBooks = []
