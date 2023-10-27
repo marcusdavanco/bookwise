@@ -8,6 +8,7 @@ import user from '../../public/user.jpg'
 import book from '../../public/book.jpg'
 import { useBooksById } from '@/hooks/queries/books'
 import { Rating } from '@/hooks/queries/ratings'
+import { Stars } from './stars'
 
 type BookReviewCardProps = Rating
 
@@ -27,13 +28,7 @@ export function BookReviewCard(props: BookReviewCardProps) {
             </span>
           </div>
         </div>
-        <div className="flex gap-1">
-          <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-          <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-          <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-          <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-          <Star className="h-4 w-4 text-purple-100" />
-        </div>
+        <Stars rate={props.rate} />
       </header>
       <section className="flex gap-5">
         <Image
