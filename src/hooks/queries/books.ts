@@ -16,7 +16,7 @@ export type Book = {
   total_pages: number
   created_at: Date
   categories: Category
-  ratings: Rating
+  ratings: Rating[]
 }
 
 // QueryKey
