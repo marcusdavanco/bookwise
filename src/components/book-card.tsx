@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { Card } from './card'
 import * as Dialog from '@radix-ui/react-dialog'
 
-import book from '../../public/book.jpg'
 import { BookDetailDrawer } from './book-detail-drawer'
 import { Stars } from './stars'
 

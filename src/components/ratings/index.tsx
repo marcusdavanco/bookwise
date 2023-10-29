@@ -8,6 +8,9 @@ export function Ratings() {
 
   return (
     <>
+      {ratingsData && (
+        <span className="mb-1 text-sm">Avaliações mais recentes</span>
+      )}
       {ratingsData?.ratings.map((rating) => (
         <BookReviewCard key={rating.id} {...rating} />
       ))}

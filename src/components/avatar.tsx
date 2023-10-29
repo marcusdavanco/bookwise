@@ -9,7 +9,7 @@ interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
 export function Avatar({ imageUrl, size = 40, ...rest }: AvatarProps) {
   return (
     <div
-      className={`rounded-full bg-gradient-to-t from-blue-50 to-green-50 max-h-[${size}px] w-fit`}
+      className={`rounded-full bg-gradient-to-t from-blue-50 to-green-50 max-h-[${size}px] w-fit border rounded-full`}
       {...rest}
     >
       <Image

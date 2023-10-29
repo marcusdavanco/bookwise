@@ -58,7 +58,7 @@ export async function Sidebar() {
             <LogIn className="text-green-100 h-5 w-5" />
           </Link>
         ) : (
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-3 items-center animate-fade">
             <UserName />
             <SignOutButton />
           </div>
