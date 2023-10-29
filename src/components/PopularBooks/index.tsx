@@ -24,16 +24,19 @@ export function PopularBooks() {
 
   return (
     <div className="flex flex-col gap-3">
-      {booksWithAverageRatings.map((book) => (
-        <BookCard
-          key={book.id}
-          size="sm"
-          author={book.author}
-          name={book.name}
-          ratings={book.rate}
-          coverUrl={book.cover_url}
-        />
-      ))}
+      {booksWithAverageRatings
+        .sort((a, b) => b.ratings.length - a.ratings.length)
+        .slice(0, 4)
+        .map((book) => (
+          <BookCard
+            key={book.id}
+            size="sm"
+            author={book.author}
+            name={book.name}
+            ratings={book.rate}
+            coverUrl={book.cover_url}
+          />
+        ))}
     </div>
   )
 }
