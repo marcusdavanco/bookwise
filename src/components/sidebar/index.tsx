@@ -8,6 +8,7 @@ import { getServerSession } from 'next-auth'
 import { authOption } from '../../app/api/auth/[...nextauth]/route'
 import { SignOutButton } from './components/signout-button'
 import { UserName } from './components/username'
+import { NavLink } from '../nav-link'
 
 export async function Sidebar() {
   const session = await getServerSession(authOption)
@@ -31,25 +32,20 @@ export async function Sidebar() {
         />
       </Link>
       <section className="flex flex-col z-10 absolute top-[8.5rem] gap-4">
-        <Link href="/home" className="flex gap-3 py-6 pl-4 relative ">
-          <span className="absolute -left-1  h-[1.5rem] top-1/2 translate-y-[-50%] w-1 rounded bg-gradient-to-t from-blue-50 to-green-50" />
+        <NavLink href="/home">
           <LineChart className="h-6 w-6" />
           Início
-        </Link>
-        <Link
-          href="/explore"
-          className="flex gap-3 py-6 pl-4 text-gray-400 hover:text-gray-200 transition duration-300 ease-out hover:ease-in"
-        >
+        </NavLink>
+        <NavLink href="/explore">
           <Search className="h-6 w-6" />
           Explorar
-        </Link>
-        <Link
-          href="/profile"
-          className="flex gap-3 py-6 pl-4 text-gray-400 hover:text-gray-200 transition duration-300 ease-out hover:ease-in"
-        >
-          <User2 className="h-6 w-6" />
-          Perfil
-        </Link>
+        </NavLink>
+        {session && (
+          <NavLink href="/profile">
+            <User2 className="h-6 w-6" />
+            Perfil
+          </NavLink>
+        )}
       </section>
       <section className="flex z-10 absolute bottom-6 ">
         {!session ? (
