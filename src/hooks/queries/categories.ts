@@ -6,6 +6,12 @@ export type Category = {
   name: string
 }
 
+export type Categories = {
+  book_id: string
+  categoryId: string
+  category: Category
+}
+
 // QueryKey
 export type CategoriesQueryKey = ['categories']
 

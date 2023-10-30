@@ -4,6 +4,7 @@ import {
   UseQueryOptions,
   useQuery,
 } from '@tanstack/react-query'
+import { Rating } from './ratings'
 
 export type User = {
   id: string
@@ -13,6 +14,7 @@ export type User = {
   avatar_url: string
   created_at: Date
   emailVerified: null
+  ratings: Rating[]
 }
 
 // QueryKey
@@ -30,11 +32,11 @@ async function getUserById({
 }
 
 // Hook
-export const useUserById = <User>(
+export const useUserById = <TData = { user: User }>(
   id: string,
-  options?: UseQueryOptions<User, unknown, User, UsersByIdQueryKey>,
+  options?: UseQueryOptions<TData, unknown, TData, UsersByIdQueryKey>,
 ) => {
-  return useQuery<User, unknown, User, UsersByIdQueryKey>({
+  return useQuery<TData, unknown, TData, UsersByIdQueryKey>({
     queryKey: ['users', id],
     queryFn: getUserById,
     ...options,

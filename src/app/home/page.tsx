@@ -15,9 +15,9 @@ export default async function Home() {
       <div className="min-w-[232px]" />
       <div className="flex gap-16 mx-auto">
         <section className="min-w-[608px]">
-          <div className="flex gap-3 mb-10">
+          <div className="flex gap-3 mb-10 animate-fade-left">
             <LineChart className="h-8 w-8 text-green-100" />
-            <h2 className="text-2xl font-bold">Início</h2>
+            <h2 className="text-2xl font-bold ">Início</h2>
           </div>
           {session && (
             <div className="flex flex-col gap-4 mb-10">

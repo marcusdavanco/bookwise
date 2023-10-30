@@ -28,7 +28,7 @@ export function BookCard({
         <Dialog.Trigger asChild>
           <div className="flex gap-5 cursor-pointer">
             <Image
-              src={coverUrl.replace('public', '')}
+              src={coverUrl?.replace('public', '')}
               height={size === 'sm' ? 64 : 152}
               width={size === 'sm' ? 64 : 108}
               alt="popular book name"

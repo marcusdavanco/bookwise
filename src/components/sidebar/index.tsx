@@ -31,7 +31,7 @@ export async function Sidebar() {
         />
       </Link>
       <section className="flex flex-col z-10 absolute top-[8.5rem] gap-4">
-        <Link href="/" className="flex gap-3 py-6 pl-4 relative ">
+        <Link href="/home" className="flex gap-3 py-6 pl-4 relative ">
           <span className="absolute -left-1  h-[1.5rem] top-1/2 translate-y-[-50%] w-1 rounded bg-gradient-to-t from-blue-50 to-green-50" />
           <LineChart className="h-6 w-6" />
           Início
@@ -58,7 +58,7 @@ export async function Sidebar() {
             <LogIn className="text-green-100 h-5 w-5" />
           </Link>
         ) : (
-          <div className="flex gap-3 items-center animate-fade">
+          <div className="flex gap-3 items-center">
             <UserName />
             <SignOutButton />
           </div>

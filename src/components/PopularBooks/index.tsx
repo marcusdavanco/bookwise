@@ -2,6 +2,7 @@
 import { useBooks } from '@/hooks/queries/books'
 import { BookCard } from '../book-card'
 import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 
 export function PopularBooks() {
   const { data: booksData } = useBooks()
@@ -27,10 +28,13 @@ export function PopularBooks() {
     <>
       <div className="flex justify-between items-center h-[30px]">
         <span className="text-sm">Livros populares</span>
-        <button className="flex gap-2 text-sm text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold">
+        <Link
+          href="/explore"
+          className="flex gap-2 text-sm text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold"
+        >
           Ver todos
           <ChevronRight className="text-xs" />
-        </button>
+        </Link>
       </div>
       <div className="flex flex-col gap-3">
         {booksWithAverageRatings

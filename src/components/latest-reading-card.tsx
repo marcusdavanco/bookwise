@@ -6,10 +6,11 @@ import { Stars } from './stars'
 import { useSession } from 'next-auth/react'
 import { useMemo } from 'react'
 import { ChevronRight } from 'lucide-react'
-
+import Link from 'next/link'
 export function LatestReadingCard() {
   const { data: sessionData } = useSession()
   const { data: ratingsData } = useRatings()
+
   const ratings = ratingsData?.ratings
   const userId = sessionData?.user.id
 
@@ -26,10 +27,13 @@ export function LatestReadingCard() {
     <>
       <div className="flex justify-between gap-3 ">
         <span className="mb-1 text-sm">Sua última leitura</span>
-        <button className="flex gap-2 text-sm text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold">
+        <Link
+          href="/profile"
+          className="flex gap-2 text-sm text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold"
+        >
           Ver todos
           <ChevronRight className=" text-xs" />
-        </button>
+        </Link>
       </div>
       <Card className="bg-gray-600 rounded-[8px] p-6 w-[38rem] flex flex-col gap-8">
         <section className="flex gap-5">

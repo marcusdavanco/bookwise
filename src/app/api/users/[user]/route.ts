@@ -12,6 +12,21 @@ export async function GET(req: NextRequest) {
     where: {
       id,
     },
+    include: {
+      ratings: {
+        include: {
+          book: {
+            include: {
+              categories: {
+                include: {
+                  category: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   })
 
   if (!user) {
