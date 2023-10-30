@@ -1,17 +1,26 @@
-import { Star } from 'lucide-react'
 import Image from 'next/image'
 
-import book from '../../public/book.jpg'
 import { Card } from './card'
+import { Rating } from '@/hooks/queries/ratings'
+import { Stars } from './stars'
+import { formatDistanceToNow } from 'date-fns'
 
-export function PersonalReviewCard() {
+type BookReviewCardProps = Rating
+
+export function PersonalReviewCard(props: BookReviewCardProps) {
+  if (!props) {
+    return
+  }
+
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-gray-300 text-sm">Há 2 dias</span>
+      <span className="text-gray-300 text-sm">
+        {formatDistanceToNow(new Date(props.created_at))}
+      </span>
       <Card className="w-[39rem] flex flex-col gap-6">
         <div className="flex gap-6">
           <Image
-            src={book}
+            src={props.book.cover_url.replace('public', '')}
             height={134}
             width={98}
             alt=""
@@ -20,29 +29,14 @@ export function PersonalReviewCard() {
           <div className="flex flex-col justify-between">
             <div className="flex flex-col">
               <span className="leading-short text-lg text-gray-100">
-                O Hobbit
+                {props.book.name}
               </span>
-              <span className="text-sm text-gray-400">J. R. R. Tolkien</span>
+              <span className="text-sm text-gray-400">{props.book.author}</span>
             </div>
-            <div className="flex gap-1">
-              <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-              <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-              <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-              <Star className="h-4 w-4 text-purple-100" fill="#8381D9" />
-              <Star className="h-4 w-4 text-purple-100" />
-            </div>
+            <Stars rate={props.rate} />
           </div>
         </div>
-        <p className="text-sm text-gray-300">
-          Tristique massa sed enim lacinia odio. Congue ut faucibus nunc vitae
-          non. Nam feugiat vel morbi viverra vitae mi. Vitae fringilla ut et
-          suspendisse enim suspendisse vitae. Leo non eget lacus sollicitudin
-          tristique pretium quam. Mollis et luctus amet sed convallis varius
-          massa sagittis. Proin sed proin at leo quis ac sem. Nam donec accumsan
-          curabitur amet tortor quam sit. Bibendum enim sit dui lorem urna amet
-          elit rhoncus ut. Aliquet euismod vitae ut turpis. Aliquam amet integer
-          pellentesque.
-        </p>
+        <p className="text-sm text-gray-300">{props.description}</p>
       </Card>
     </div>
   )

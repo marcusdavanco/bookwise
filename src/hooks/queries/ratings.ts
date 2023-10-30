@@ -45,9 +45,9 @@ async function getRatingByUserId({
 }: QueryFunctionContext<RatingsByUserIdQueryKey>) {
   const [, id] = queryKey
 
-  const { data: rating } = await api.get(`/ratings/user/${id}`)
+  const { data: ratings } = await api.get(`/ratings/user/${id}`)
 
-  return rating
+  return ratings
 }
 
 // Hook
@@ -78,11 +78,16 @@ export const useRatingsById = <Rating>(
   })
 }
 
-export const useRatingsByUserId = <Rating>(
+export const useRatingsByUserId = <TData = { ratings: Rating[] }>(
   id: string,
-  options?: UseQueryOptions<Rating, unknown, Rating, RatingsByIdQueryKey>,
+  options?: UseQueryOptions<
+    { ratings: Rating[] },
+    unknown,
+    TData,
+    RatingsByIdQueryKey
+  >,
 ) => {
-  return useQuery<Rating, unknown, Rating, RatingsByIdQueryKey>({
+  return useQuery({
     queryKey: ['ratings', id],
     queryFn: getRatingByUserId,
     ...options,

@@ -8,6 +8,14 @@ export async function GET(req: NextRequest) {
     where: {
       user_id: userId,
     },
+    include: {
+      user: true,
+      book: true,
+    },
+    orderBy: {
+      // eslint-disable-next-line camelcase
+      created_at: 'desc',
+    },
   })
 
   return NextResponse.json({ ratings }, { status: 200 })
