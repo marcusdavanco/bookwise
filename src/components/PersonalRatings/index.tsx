@@ -31,7 +31,10 @@ export function PersonalRatings() {
 
   return (
     <>
-      <SearchBar placeholder="Buscar livro avaliado" />
+      <SearchBar
+        placeholder="Buscar livro avaliado"
+        searchFn={setSearchArgument}
+      />
       <div className="flex flex-col gap-6">
         {ratings.map((rating) => (
           <PersonalReviewCard key={rating.id} {...rating} />
