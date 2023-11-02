@@ -21,7 +21,7 @@ export type Rating = {
 // QueryKey
 export type RatingsQueryKey = ['ratings']
 export type RatingsByIdQueryKey = ['ratings', string]
-export type RatingsByUserIdQueryKey = ['ratings', string]
+export type RatingsByUserIdQueryKey = ['ratings', string, string]
 
 // queryFn
 async function fetchRatings() {
@@ -43,9 +43,9 @@ async function getRatingById({
 async function getRatingByUserId({
   queryKey,
 }: QueryFunctionContext<RatingsByUserIdQueryKey>) {
-  const [, id] = queryKey
+  const [, id, title] = queryKey
 
-  const { data: ratings } = await api.get(`/ratings/user/${id}`)
+  const { data: ratings } = await api.get(`/ratings/user/${id}?title=${title}`)
 
   return ratings
 }
@@ -78,17 +78,18 @@ export const useRatingsById = <Rating>(
   })
 }
 
-export const useRatingsByUserId = <TData = { ratings: Rating[] }>(
+export const useSearchRatingsByUserId = <TData = { ratings: Rating[] }>(
   id: string,
+  title = '',
   options?: UseQueryOptions<
     { ratings: Rating[] },
     unknown,
     TData,
-    RatingsByIdQueryKey
+    RatingsByUserIdQueryKey
   >,
 ) => {
   return useQuery({
-    queryKey: ['ratings', id],
+    queryKey: ['ratings', id, title],
     queryFn: getRatingByUserId,
     ...options,
     enabled: !!id,
