@@ -22,7 +22,7 @@ export type Book = {
 // QueryKey
 export type BooksQueryKey = ['books']
 export type BooksByIdQueryKey = ['books', string]
-export type BooksByCategoryIdQueryKey = ['books', string]
+export type BooksByCategoryIdQueryKey = ['books', string, string]
 
 // queryFn
 async function fetchBooks() {
@@ -31,12 +31,12 @@ async function fetchBooks() {
   return books
 }
 
-async function fetchBooksByCategory({
+async function searchBooksByCategory({
   queryKey,
 }: QueryFunctionContext<BooksByCategoryIdQueryKey>) {
-  const [, id] = queryKey
+  const [, id, q] = queryKey
 
-  const { data: books } = await api.get(`/books/category/${id}`)
+  const { data: books } = await api.get(`/books/category/${id}?q=${q}`)
 
   return books
 }
@@ -74,8 +74,9 @@ export const useBooksById = <Book>(
   })
 }
 
-export const useBooksByCategory = <Tdata = { books: Book[] }>(
+export const useSearchBooksByCategory = <Tdata = { books: Book[] }>(
   id: string,
+  q: string,
   options?: UseQueryOptions<
     { books: Book[] },
     unknown,
@@ -84,8 +85,8 @@ export const useBooksByCategory = <Tdata = { books: Book[] }>(
   >,
 ) => {
   return useQuery({
-    queryKey: ['books', id],
-    queryFn: fetchBooksByCategory,
+    queryKey: ['books', id, q],
+    queryFn: searchBooksByCategory,
     ...options,
     enabled: !!id,
   })

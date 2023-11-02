@@ -1,3 +1,4 @@
+'use client'
 import { Search } from 'lucide-react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'

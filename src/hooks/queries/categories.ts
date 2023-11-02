@@ -23,7 +23,7 @@ async function fetchCategories() {
 }
 
 // Hook
-export const useBooks = <Tdata = { categories: Category[] }>(
+export const useCategories = <Tdata = { categories: Category[] }>(
   options?: UseQueryOptions<
     { books: Category[] },
     unknown,

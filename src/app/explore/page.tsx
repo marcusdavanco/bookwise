@@ -1,12 +1,17 @@
-import { BookCard } from '@/components/book-card'
+import { BooksList } from '@/components/BooksList'
 import { SearchBar } from '@/components/searchbar'
 import { Sidebar } from '@/components/sidebar'
 import { TagButton } from '@/components/tag-button'
 import { Search } from 'lucide-react'
-// import { redirect } from 'next/navigation'
+import { getSession } from 'next-auth/react'
+import { redirect } from 'next/navigation'
 
 export default function Profile() {
-  // redirect('/login')
+  const session = getSession()
+
+  if (!session) {
+    redirect('/login')
+  }
 
   return (
     <main className="p-5 flex min-h-full ">
@@ -27,16 +32,11 @@ export default function Profile() {
 
           <div className="flex gap-3 flex-wrap">
             <TagButton active={true} text="Tudo" />
-            {Array.from({ length: 15 }, (_, index) => index).map((index, i) => (
+            {Array.from({ length: 15 }, (_, index) => index).map((index) => (
               <TagButton key={index} text="Category" />
             ))}
           </div>
-
-          <div className="grid grid-cols-3 2xl:grid-cols-4 gap-5 my-2">
-            {Array.from({ length: 15 }, (_, index) => index).map((index, i) => (
-              <BookCard key={index} />
-            ))}
-          </div>
+          <BooksList />
         </section>
       </div>
     </main>
