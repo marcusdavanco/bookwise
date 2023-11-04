@@ -3,15 +3,25 @@
 import { useSearchBooksByCategoryId } from '@/hooks/queries/books'
 import { BookCard } from '../book-card'
 import { CategorySelector } from '../category-selector'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchStore } from '@/store'
 
 export function BooksList() {
   const [category, setCategory] = useState('')
-  const { data: booksData } = useSearchBooksByCategoryId(category, '')
-
-  console.log('BOOKSDATA', booksData)
+  const searchArgument = useSearchStore((state) => state.searchArgument)
+  const setSearchArgument = useSearchStore((state) => state.setSearchArgument)
+  const { data: booksData } = useSearchBooksByCategoryId(
+    category,
+    searchArgument,
+  )
 
   const books = booksData?.books
+
+  useEffect(() => {
+    return () => {
+      setSearchArgument('')
+    }
+  }, [setSearchArgument])
 
   if (!books) {
     return <h2>NO BOOKS</h2>

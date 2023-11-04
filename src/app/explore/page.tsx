@@ -25,10 +25,7 @@ export default function Profile() {
             </div>
 
             <div className="flex w-[433px]">
-              {/* <SearchBar
-                placeholder="Buscar livro ou autor"
-                searchFn={() => null}
-              /> */}
+              <SearchBar placeholder="Buscar livro ou autor" />
             </div>
           </div>
           <BooksList />

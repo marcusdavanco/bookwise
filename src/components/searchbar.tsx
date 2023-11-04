@@ -2,10 +2,11 @@
 import { Search } from 'lucide-react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useSearchStore } from '@/store'
 
 interface SearchBarProps {
   placeholder: string
-  searchFn: (SearchArgument: string) => void
+  searchFn?: (SearchArgument: string) => void
 }
 
 export const searchFormSchema = z.object({
@@ -16,9 +17,14 @@ type SearchForm = z.infer<typeof searchFormSchema>
 
 export function SearchBar({ placeholder, searchFn }: SearchBarProps) {
   const { register, handleSubmit } = useForm<SearchForm>()
+  const setSearchArgument = useSearchStore((state) => state.setSearchArgument)
 
   const onSearch: SubmitHandler<SearchForm> = (data: SearchForm) => {
-    searchFn(data.q)
+    if (searchFn) {
+      return searchFn(data.q)
+    }
+
+    setSearchArgument(data.q)
   }
 
   return (
