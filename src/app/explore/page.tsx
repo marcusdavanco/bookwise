@@ -1,5 +1,4 @@
 import { BooksList } from '@/components/BooksList'
-import { CategorySelector } from '@/components/category-selector'
 import { SearchBar } from '@/components/searchbar'
 import { Sidebar } from '@/components/sidebar'
 import { Search } from 'lucide-react'
@@ -26,11 +25,12 @@ export default function Profile() {
             </div>
 
             <div className="flex w-[433px]">
-              <SearchBar placeholder="Buscar livro ou autor" />
+              {/* <SearchBar
+                placeholder="Buscar livro ou autor"
+                searchFn={() => null}
+              /> */}
             </div>
           </div>
-
-          <CategorySelector />
           <BooksList />
         </section>
       </div>

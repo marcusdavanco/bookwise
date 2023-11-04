@@ -31,12 +31,22 @@ async function fetchBooks() {
   return books
 }
 
-async function searchBooksByCategory({
+async function searchBooksByCategoryId({
   queryKey,
 }: QueryFunctionContext<BooksByCategoryIdQueryKey>) {
   const [, id, q] = queryKey
 
-  const { data: books } = await api.get(`/books/category/${id}?q=${q}`)
+  let url = '/books'
+
+  if (id && q) {
+    url += `?categoryId=${id}&q=${q}`
+  } else if (id) {
+    url += `?categoryId=${id}`
+  } else if (q) {
+    url += `?q=${q}`
+  }
+
+  const { data: books } = await api.get(url)
 
   return books
 }
@@ -74,7 +84,7 @@ export const useBooksById = <Book>(
   })
 }
 
-export const useSearchBooksByCategory = <Tdata = { books: Book[] }>(
+export const useSearchBooksByCategoryId = <Tdata = { books: Book[] }>(
   id: string,
   q: string,
   options?: UseQueryOptions<
@@ -86,8 +96,8 @@ export const useSearchBooksByCategory = <Tdata = { books: Book[] }>(
 ) => {
   return useQuery({
     queryKey: ['books', id, q],
-    queryFn: searchBooksByCategory,
+    queryFn: searchBooksByCategoryId,
     ...options,
-    enabled: !!id,
+    enabled: true,
   })
 }

@@ -3,7 +3,15 @@
 import { useCategories } from '@/hooks/queries/categories'
 import { TagButton } from './tag-button'
 
-export function CategorySelector() {
+interface CategorySelectorProps {
+  currentCategory: string
+  selectFn: (category: string) => void
+}
+
+export function CategorySelector({
+  currentCategory,
+  selectFn,
+}: CategorySelectorProps) {
   const { data: categoriesData } = useCategories()
 
   const categories = categoriesData?.categories
@@ -14,9 +22,18 @@ export function CategorySelector() {
 
   return (
     <div className="flex gap-3 flex-wrap">
-      <TagButton active={true} text="Tudo" />
+      <TagButton
+        active={currentCategory === ''}
+        text="Tudo"
+        onClick={() => selectFn('')}
+      />
       {categories.map((category) => (
-        <TagButton key={category.id} text={category.name} />
+        <TagButton
+          key={category.id}
+          text={category.name}
+          active={currentCategory === category.id}
+          onClick={() => selectFn(category.id)}
+        />
       ))}
     </div>
   )
