@@ -41,14 +41,7 @@ export function PopularBooks() {
           .sort((a, b) => b.ratings.length - a.ratings.length)
           .slice(0, 4)
           .map((book) => (
-            <BookCard
-              key={book.id}
-              size="sm"
-              author={book.author}
-              name={book.name}
-              ratings={book.rate}
-              coverUrl={book.cover_url}
-            />
+            <BookCard key={book.id} size="sm" book={book} />
           ))}
       </div>
     </>
