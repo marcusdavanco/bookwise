@@ -21,8 +21,17 @@ export async function GET(req: NextRequest) {
       OR: [{ name: { contains: q } }, { author: { contains: q } }],
     },
     include: {
-      ratings: true,
-      categories: true,
+      ratings: {
+        include: {
+          book: true,
+          user: true,
+        },
+      },
+      categories: {
+        include: {
+          category: true,
+        },
+      },
     },
   })
 

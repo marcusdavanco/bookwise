@@ -6,8 +6,14 @@ import Image from 'next/image'
 import { CommentCard } from './comment-card'
 import { LoginDialog } from './login-dialog'
 import { CommentFormCard } from './comment-form-card'
+import { BookWithAverageRating } from './book-card'
+import { Stars } from './stars'
 
-export function BookDetailDrawer() {
+interface BookDetailDrawerProps {
+  book: BookWithAverageRating
+}
+
+export function BookDetailDrawer({ book }: BookDetailDrawerProps) {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 w-full bg-black/75" />
@@ -19,30 +25,26 @@ export function BookDetailDrawer() {
         <Card className="px-8 py-6 gap-10 flex flex-col">
           <div className="flex gap-8">
             <Image
-              src={book.src}
+              src={book.cover_url.replace('public', '')}
               height={242}
               width={171}
-              alt="popular book name"
+              alt={`cover of ${book.name}`}
               className="rounded-[4px]"
             />
             <div className="flex flex-col justify-between ">
               <header className="flex flex-col gap-2">
                 <p className="text-lg font-bold leading-[140%] text-gray-100">
-                  14 Hábitos de Desenvolvedores Altamente Produtivos
+                  {book.name}
                 </p>
                 <p className="text-md leading-[160%] text-gray-300">
-                  Zeno Rocha
+                  {book.author}
                 </p>
               </header>
               <footer>
-                <div className="flex gap-1">
-                  <Star size={20} color="#8381D9" fill="#8381D9" />
-                  <Star size={20} color="#8381D9" fill="#8381D9" />
-                  <Star size={20} color="#8381D9" fill="#8381D9" />
-                  <Star size={20} color="#8381D9" fill="#8381D9" />
-                  <Star size={20} color="#8381D9" />
-                </div>
-                <p className="text-sm text-gray-400">3 avaliações</p>
+                <Stars rate={book.rate} />
+                <p className="text-sm text-gray-400">
+                  {book.ratings.length} avaliações
+                </p>
               </footer>
             </div>
           </div>
@@ -54,7 +56,7 @@ export function BookDetailDrawer() {
                   Categoria
                 </p>
                 <p className="text-gray-200 text-md leading-[140%] font-bold">
-                  Computação, educação
+                  {book.categories.map((c) => c.category?.name).join(', ')}
                 </p>
               </div>
             </div>
@@ -63,7 +65,7 @@ export function BookDetailDrawer() {
               <div className="flex flex-col">
                 <p className="text-gray-300 text-sm leading-[160%]">Páginas</p>
                 <p className="text-gray-200 text-md leading-[140%] font-bold">
-                  160
+                  {book.total_pages}
                 </p>
               </div>
             </div>
@@ -85,11 +87,9 @@ export function BookDetailDrawer() {
           </div>
           <div className="flex flex-col gap-3">
             <CommentFormCard />
-            <CommentCard />
-            <CommentCard />
-            <CommentCard />
-            <CommentCard />
-            <CommentCard />
+            {book.ratings.map((rating) => (
+              <CommentCard key={rating.id} {...rating} />
+            ))}
           </div>
         </section>
       </Dialog.Content>

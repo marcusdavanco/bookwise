@@ -39,13 +39,7 @@ export function BooksList() {
       <CategorySelector selectFn={setCategory} currentCategory={category} />
       <div className="grid grid-cols-3 2xl:grid-cols-4 gap-5 my-2">
         {booksWithAverageRatings.map((book) => (
-          <BookCard
-            key={book.id}
-            author={book.author}
-            coverUrl={book.cover_url}
-            name={book.name}
-            ratings={book.rate}
-          />
+          <BookCard key={book.id} book={book} />
         ))}
       </div>
     </>
