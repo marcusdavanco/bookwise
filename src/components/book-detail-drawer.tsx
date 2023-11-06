@@ -1,19 +1,26 @@
+'use client'
 import * as Dialog from '@radix-ui/react-dialog'
-import { BookOpen, Bookmark, Star, X } from 'lucide-react'
+import { BookOpen, Bookmark, X } from 'lucide-react'
 import { Card } from './card'
-import book from '../../public/book.jpg'
 import Image from 'next/image'
 import { CommentCard } from './comment-card'
 import { LoginDialog } from './login-dialog'
 import { CommentFormCard } from './comment-form-card'
 import { BookWithAverageRating } from './book-card'
 import { Stars } from './stars'
+import { useState } from 'react'
+import { useSession } from 'next-auth/react'
 
 interface BookDetailDrawerProps {
   book: BookWithAverageRating
 }
 
 export function BookDetailDrawer({ book }: BookDetailDrawerProps) {
+  const [displayForm, setDisplayForm] = useState(false)
+  const session = useSession()
+
+  const user = session.data?.user
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 w-full bg-black/75" />
@@ -76,17 +83,33 @@ export function BookDetailDrawer({ book }: BookDetailDrawerProps) {
             <span className="text-sm leading-[160%] text-gray-200">
               Avaliações
             </span>
-            <Dialog.Root>
-              <Dialog.Trigger asChild>
-                <button className="flex gap-2 text-md text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold">
-                  Avaliar
-                </button>
-              </Dialog.Trigger>
-              <LoginDialog />
-            </Dialog.Root>
+            {user ? (
+              <button
+                className="flex gap-2 text-md text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold"
+                onClick={() => {
+                  user && setDisplayForm(true)
+                }}
+              >
+                Avaliar
+              </button>
+            ) : (
+              <Dialog.Root>
+                <Dialog.Trigger asChild>
+                  <button className="flex gap-2 text-md text-purple-100 hover:brightness-125 transition duration-200 ease-out hover:ease-in font-bold">
+                    Avaliar
+                  </button>
+                </Dialog.Trigger>
+                <LoginDialog />
+              </Dialog.Root>
+            )}
           </div>
           <div className="flex flex-col gap-3">
-            <CommentFormCard bookId={book.id} />
+            {displayForm && (
+              <CommentFormCard
+                bookId={book.id}
+                onClose={() => setDisplayForm(false)}
+              />
+            )}
             {book.ratings.map((rating) => (
               <CommentCard key={rating.id} {...rating} />
             ))}

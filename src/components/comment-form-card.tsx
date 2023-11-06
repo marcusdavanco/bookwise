@@ -25,9 +25,10 @@ interface RatingParams {
 
 interface CommentFormCardProps {
   bookId: string
+  onClose: () => void
 }
 
-export function CommentFormCard({ bookId }: CommentFormCardProps) {
+export function CommentFormCard({ bookId, onClose }: CommentFormCardProps) {
   const session = useSession()
   const queryClient = useQueryClient()
 
@@ -172,7 +173,7 @@ export function CommentFormCard({ bookId }: CommentFormCardProps) {
         <div className="flex justify-end gap-2">
           <button
             className="bg-gray-600 rounded-[4px] px-2 py-2 w-10 h-10"
-            onClick={() => console.log('close')}
+            onClick={onClose}
           >
             <X className="text-purple-100" />
           </button>
