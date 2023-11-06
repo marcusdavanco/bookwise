@@ -21,7 +21,11 @@ export function LoginDialog() {
         </header>
         <div className="flex flex-col gap-4 min-w-[372px]">
           <SignInButton imageUrl={googleIcon.src} providerName="google" />
-          <SignInButton imageUrl={githubIcon.src} providerName="github" />
+          <SignInButton
+            imageUrl={githubIcon.src}
+            providerName="github"
+            disabled
+          />
         </div>
       </Dialog.Content>
     </Dialog.Portal>
