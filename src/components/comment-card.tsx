@@ -8,8 +8,6 @@ import { Stars } from './stars'
 type CommentCardProps = Rating
 
 export function CommentCard(props: CommentCardProps) {
-  console.log('PROPS', props)
-
   return (
     <Card className="flex flex-col gap-5 ">
       <header className="flex justify-between">

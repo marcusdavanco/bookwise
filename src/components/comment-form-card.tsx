@@ -4,29 +4,78 @@ import { Avatar } from './avatar'
 import { Card } from './card'
 
 import { useSession } from 'next-auth/react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, useForm, useWatch } from 'react-hook-form'
 import { z } from 'zod'
+import { useQueryClient, useMutation } from '@tanstack/react-query'
+import { api } from '@/lib/axios'
 
-export function CommentFormCard() {
+const RatingFormSchema = z.object({
+  description: z.string().max(450),
+  rate: z.number().min(0).max(5),
+})
+
+type RatingForm = z.infer<typeof RatingFormSchema>
+
+interface RatingParams {
+  description: string
+  rate: number
+  user_id: string
+  book_id: string
+}
+
+interface CommentFormCardProps {
+  bookId: string
+}
+
+export function CommentFormCard({ bookId }: CommentFormCardProps) {
   const session = useSession()
+  const queryClient = useQueryClient()
 
   const user = session.data?.user
 
-  const RatingFormSchema = z.object({
-    description: z.string().max(450),
-    rate: z.number().min(0).max(5),
+  const { register, handleSubmit, control, reset } = useForm<RatingForm>({
+    defaultValues: {
+      description: '',
+      rate: 0,
+    },
   })
 
-  type RatingForm = z.infer<typeof RatingFormSchema>
+  const saveRating = useMutation({
+    mutationFn: (data: RatingParams) => api.post('/ratings', data),
+    onError: (error: ErrorEvent) => {
+      alert(error.message)
+    },
+    onSuccess: async () => {
+      console.log('Rating updated successfully.')
+      await queryClient.invalidateQueries({
+        queryKey: ['books'],
+        refetchType: 'active',
+      })
+      await queryClient.invalidateQueries({
+        queryKey: ['ratings'],
+        refetchType: 'active',
+      })
+      reset()
+    },
+  })
 
-  const { register, handleSubmit } = useForm<RatingForm>()
-
-  const onSubmit: SubmitHandler<RatingForm> = (data: RatingForm) => {
-    return 'TODO'
-  }
+  const currentRate = useWatch({
+    name: 'rate',
+    defaultValue: 0,
+    control,
+  })
 
   if (!user) {
     return
+  }
+
+  const onSubmit: SubmitHandler<RatingForm> = (data: RatingForm) => {
+    saveRating.mutate({
+      description: data.description,
+      rate: +data.rate,
+      book_id: bookId,
+      user_id: user.id,
+    })
   }
 
   return (
@@ -43,47 +92,72 @@ export function CommentFormCard() {
           </div>
           <div className="flex gap-1">
             <label htmlFor="rating-1">
-              <Star size={24} className="text-purple-100" />
+              <Star
+                size={24}
+                className="text-purple-100"
+                fill={currentRate >= 1 ? '#8381D9' : ''}
+              />
               <input
                 type="radio"
                 id="rating-1"
                 value={1}
+                className="hidden"
                 {...register('rate')}
               />
             </label>
             <label htmlFor="rating-2">
-              <Star size={24} className="text-purple-100" />
+              <Star
+                size={24}
+                className="text-purple-100"
+                fill={currentRate >= 2 ? '#8381D9' : ''}
+              />
               <input
                 type="radio"
                 id="rating-2"
                 value={2}
+                className="hidden"
                 {...register('rate')}
               />
             </label>
             <label htmlFor="rating-3">
-              <Star size={24} className="text-purple-100" />
+              <Star
+                size={24}
+                className="text-purple-100"
+                fill={currentRate >= 3 ? '#8381D9' : ''}
+              />
               <input
                 type="radio"
                 id="rating-3"
+                className="hidden"
                 value={3}
                 {...register('rate')}
               />
             </label>
             <label htmlFor="rating-4">
-              <Star size={24} className="text-purple-100" />
+              <Star
+                size={24}
+                className="text-purple-100"
+                fill={currentRate >= 4 ? '#8381D9' : ''}
+              />
               <input
                 type="radio"
                 id="rating-4"
                 value={4}
+                className="hidden"
                 {...register('rate')}
               />
             </label>
             <label htmlFor="rating-5">
-              <Star size={24} className="text-purple-100" />
+              <Star
+                size={24}
+                className="text-purple-100"
+                fill={currentRate >= 5 ? '#8381D9' : ''}
+              />
               <input
                 type="radio"
                 id="rating-5"
                 value={5}
+                className="hidden"
                 {...register('rate')}
               />
             </label>

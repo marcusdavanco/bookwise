@@ -86,7 +86,7 @@ export function BookDetailDrawer({ book }: BookDetailDrawerProps) {
             </Dialog.Root>
           </div>
           <div className="flex flex-col gap-3">
-            <CommentFormCard />
+            <CommentFormCard bookId={book.id} />
             {book.ratings.map((rating) => (
               <CommentCard key={rating.id} {...rating} />
             ))}
