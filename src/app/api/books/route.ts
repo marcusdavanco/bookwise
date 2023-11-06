@@ -26,6 +26,10 @@ export async function GET(req: NextRequest) {
           book: true,
           user: true,
         },
+        orderBy: {
+          // eslint-disable-next-line camelcase
+          created_at: 'desc',
+        },
       },
       categories: {
         include: {
